@@ -1,3 +1,13 @@
+<a name="1.0.3"></a>
+## [1.0.3](https://github.com/hypeJunction/Elgg3-hypePostAdmin/compare/1.0.2...1.0.3) (2019-06-21)
+
+
+### Bug Fixes
+
+* **user:** integrate with hypeProfile access-enabled fields ([8ffc307](https://github.com/hypeJunction/Elgg3-hypePostAdmin/commit/8ffc307))
+
+
+
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/hypeJunction/Elgg3-hypePostAdmin/compare/1.0.1...1.0.2) (2019-06-21)
 
