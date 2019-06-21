@@ -9,6 +9,7 @@ use hypeJunction\Fields\BooleanField;
 use hypeJunction\Fields\CustomHtml;
 use hypeJunction\Fields\MetaField;
 use hypeJunction\Fields\TagsField;
+use hypeJunction\Profile\ProfileField;
 
 class ConfigureFieldTypes {
 
@@ -19,7 +20,11 @@ class ConfigureFieldTypes {
 			'type' => 'text',
 			'label' => elgg_echo('post:admin:type:text'),
 			'config' => [],
-			'adapter' => function ($params) {
+			'adapter' => function ($params, $entity) {
+				if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+					return new ProfileField($params);
+				}
+
 				return new MetaField($params);
 			}
 		];
@@ -28,7 +33,11 @@ class ConfigureFieldTypes {
 			'type' => 'plaintext',
 			'label' => elgg_echo('post:admin:type:plaintext'),
 			'config' => [],
-			'adapter' => function ($params) {
+			'adapter' => function ($params, $entity) {
+				if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+					return new ProfileField($params);
+				}
+
 				return new MetaField($params);
 			}
 		];
@@ -37,7 +46,11 @@ class ConfigureFieldTypes {
 			'type' => 'longtext',
 			'label' => elgg_echo('post:admin:type:longtext'),
 			'config' => [],
-			'adapter' => function ($params) {
+			'adapter' => function ($params, $entity) {
+				if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+					return new ProfileField($params);
+				}
+
 				return new MetaField($params);
 			}
 		];
@@ -49,7 +62,7 @@ class ConfigureFieldTypes {
 				'has_options' => true,
 				'accepts_multiple' => true,
 			],
-			'adapter' => function ($params) {
+			'adapter' => function ($params, $entity) {
 				$options = $params['options'];
 				$params['options'] = [];
 				$params['options_values'] = [];
@@ -59,6 +72,10 @@ class ConfigureFieldTypes {
 					$value = $option['value'];
 
 					$params['options_values'][$value] = $label;
+				}
+
+				if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+					return new ProfileField($params);
 				}
 
 				return new MetaField($params);
@@ -72,7 +89,7 @@ class ConfigureFieldTypes {
 				'has_options' => true,
 				'accepts_multiple' => true,
 			],
-			'adapter' => function ($params) {
+			'adapter' => function ($params, $entity) {
 				if (!$params['multiple']) {
 					$params['type'] = 'radio';
 				}
@@ -85,6 +102,10 @@ class ConfigureFieldTypes {
 					$value = $option['value'];
 
 					$params['options'][$label] = $value;
+				}
+
+				if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+					return new ProfileField($params);
 				}
 
 				return new MetaField($params);
@@ -106,7 +127,11 @@ class ConfigureFieldTypes {
 			'type' => 'number',
 			'label' => elgg_echo('post:admin:type:number'),
 			'config' => [],
-			'adapter' => function ($params) {
+			'adapter' => function ($params, $entity) {
+				if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+					return new ProfileField($params);
+				}
+
 				return new MetaField($params);
 			},
 		];
@@ -116,7 +141,11 @@ class ConfigureFieldTypes {
 			'type' => 'email',
 			'label' => elgg_echo('post:admin:type:email'),
 			'config' => [],
-			'adapter' => function ($params) {
+			'adapter' => function ($params, $entity) {
+				if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+					return new ProfileField($params);
+				}
+
 				return new MetaField($params);
 			},
 		];
@@ -126,7 +155,11 @@ class ConfigureFieldTypes {
 			'type' => 'url',
 			'label' => elgg_echo('post:admin:type:url'),
 			'config' => [],
-			'adapter' => function ($params) {
+			'adapter' => function ($params, $entity) {
+				if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+					return new ProfileField($params);
+				}
+
 				return new MetaField($params);
 			},
 		];
@@ -135,8 +168,12 @@ class ConfigureFieldTypes {
 			'type' => 'date',
 			'label' => elgg_echo('post:admin:type:date'),
 			'config' => [],
-			'adapter' => function ($params) {
+			'adapter' => function ($params, $entity) {
 				$params['timestamp'] = true;
+
+				if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+					return new ProfileField($params);
+				}
 
 				return new MetaField($params);
 			},
@@ -146,7 +183,11 @@ class ConfigureFieldTypes {
 			'type' => 'time',
 			'label' => elgg_echo('post:admin:type:time'),
 			'config' => [],
-			'adapter' => function ($params) {
+			'adapter' => function ($params, $entity) {
+				if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+					return new ProfileField($params);
+				}
+
 				return new MetaField($params);
 			},
 		];
@@ -155,7 +196,11 @@ class ConfigureFieldTypes {
 			'type' => 'tags',
 			'label' => elgg_echo('post:admin:type:tags'),
 			'config' => [],
-			'adapter' => function ($params) {
+			'adapter' => function ($params, $entity) {
+				if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+					return new ProfileField($params);
+				}
+
 				return new TagsField($params);
 			},
 		];
@@ -183,7 +228,11 @@ class ConfigureFieldTypes {
 				'config' => [
 					'accepts_multiple' => true,
 				],
-				'adapter' => function ($params) {
+				'adapter' => function ($params, $entity) {
+					if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+						return new ProfileField($params);
+					}
+
 					return new MetaField($params);
 				}
 			];
@@ -199,7 +248,11 @@ class ConfigureFieldTypes {
 				'config' => [
 					'accepts_multiple' => true,
 				],
-				'adapter' => function ($params) {
+				'adapter' => function ($params, $entity) {
+					if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+						return new ProfileField($params);
+					}
+
 					return new MetaField($params);
 				}
 			];
@@ -225,7 +278,11 @@ class ConfigureFieldTypes {
 				'type' => 'country',
 				'label' => elgg_echo('post:admin:type:country'),
 				'config' => [],
-				'adapter' => function ($params) {
+				'adapter' => function ($params, $entity) {
+					if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+						return new ProfileField($params);
+					}
+
 					return new MetaField($params);
 				}
 			];
@@ -234,7 +291,7 @@ class ConfigureFieldTypes {
 				'type' => 'address',
 				'label' => elgg_echo('post:admin:type:address'),
 				'config' => [],
-				'adapter' => function ($params) {
+				'adapter' => function ($params, $entity) {
 					return new AddressField($params);
 				}
 			];
