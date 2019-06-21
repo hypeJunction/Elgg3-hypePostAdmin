@@ -4,7 +4,7 @@
     <name>hypePost - Admin</name>
     <id>hypePostAdmin</id>
     <description>UI for managing post schemas</description>
-    <version type="dist">0.0.0</version>
+    <version type="dist">1.0.0</version>
 
     <category>posts</category>
     <category>admin</category>
