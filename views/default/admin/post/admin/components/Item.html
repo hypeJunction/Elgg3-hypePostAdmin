@@ -1,0 +1,62 @@
+<div class="post-admin__item">
+    <div class="post-admin__item-head">
+        <div class="elgg-row is-vcentered">
+            <div class="post-admin__handle cursor--draggable">
+                <elgg-icon name="arrows-alt"></elgg-icon>
+            </div>
+
+            <div class="elgg-col-2of3 elgg-row is-vcentered" @click.once="toggleForm">
+                <elgg-input-text
+                    v-model="item.name"
+                    :placeholder="echo('post:admin:name')"
+                    class="is-display-inline-block"
+                    required
+                ></elgg-input-text>
+
+                <elgg-input-select
+                    v-model="item.type"
+                    class="is-display-inline-block"
+                    :options="fieldTypeOptions"
+                    :placeholder="echo('post:admin:type')"
+                    required
+                ></elgg-input-select>
+            </div>
+
+            <ul class="post-admin__actions elgg-menu is-horizontal is-last">
+                <li>
+                    <a @click.prevent="deleteItem">
+                        <elgg-icon
+                            name="trash"
+                            color="danger"
+                        ></elgg-icon>
+                    </a>
+                </li>
+
+                <li>
+                    <a @click.prevent="toggleForm">
+                        <elgg-icon
+                            v-if="isEditing"
+                            name="angle-down"
+                        ></elgg-icon>
+                        <elgg-icon
+                            v-else
+                            name="angle-right"
+                        ></elgg-icon>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <transition
+            enter-active-class="animated flipInX"
+            leave-active-class="animated flipOutX"
+            :duration="250"
+        >
+            <post-admin-form
+                v-if="isEditing"
+                :item.sync="item"
+                :field-types="fieldTypes"
+            />
+        </transition>
+    </div>
+</div>

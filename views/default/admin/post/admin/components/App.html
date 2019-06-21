@@ -1,0 +1,27 @@
+<div class="post-admin">
+
+    <template v-for="section in sections">
+        <post-admin-section
+            :key="section.name"
+            :section.sync="section"
+            :field-types="fieldTypes"
+        ></post-admin-section>
+    </template>
+
+    <div class="post-admin__menu">
+        <a class="post-admin__add-section" @click.prevent="addSection">
+            <i class="fas fa-plus"></i>
+            <span>{{ echo('post:admin:add_section') }}</span>
+        </a>
+    </div>
+
+    <div class="post-admin__footer elgg-foot">
+        <elgg-button
+            role="submit"
+            :text="echo('save')"
+            @click="save"
+            :loading="loading"
+            :disabled="loading"
+        ></elgg-button>
+    </div>
+</div>

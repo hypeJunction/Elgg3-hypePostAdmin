@@ -1,0 +1,38 @@
+<div class="post-admin__section elgg-module elgg-module-aside">
+    <div class="elgg-head">
+        <elgg-input-contenteditable
+            component="h3"
+            v-model="section.name"
+        />
+    </div>
+
+    <div class="elgg-body">
+        <draggable v-model="section.items" :options="draggableOptions">
+            <div
+                v-for="(item, index) in section.items"
+                :key="index"
+                class="post-admin__item--draggable"
+            >
+                <transition
+                    appear
+                    appear-active-class="animated fadeIn"
+                    :duration="250"
+                >
+                    <post-admin-item
+                        :key="index"
+                        :item.sync="item"
+                        :field-types="fieldTypes"
+                        @delete="deleteItem(index)"
+                    ></post-admin-item>
+                </transition>
+            </div>
+        </draggable>
+    </div>
+
+    <div class="post-admin__menu elgg-foot">
+        <a class="post-admin__add-item" @click="addItem">
+            <i class="fas fa-plus"></i>
+            <span>{{ echo('post:admin:add_item') }}</span>
+        </a>
+    </div>
+</div>

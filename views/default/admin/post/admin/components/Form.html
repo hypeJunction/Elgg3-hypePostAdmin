@@ -1,0 +1,137 @@
+<div class="post-admin__item-form">
+    <div class="elgg-columns has-padding">
+        <div class="elgg-col-1of4">
+            <ul class="elgg-menu">
+                <li v-for="prop in confProps">
+                    <label>
+                        <input
+                            type="checkbox"
+                            v-model="item[prop]"
+                        />
+                        <span>{{ echo('post:admin:' + prop) }}</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+
+        <div class="elgg-col-3of4 elgg-columns has-padding">
+            <div class="elgg-col-1of1">
+                <ul class="elgg-menu is-horizontal">
+                    <li>
+                        <label>
+                            <input
+                                type="checkbox"
+                                v-model="item.required"
+                            />
+                            <span>{{ echo('post:admin:required') }}</span>
+                        </label>
+                    </li>
+
+                    <li v-if="fieldType.config.accepts_multiple">
+                        <label>
+                            <input
+                                type="checkbox"
+                                v-model="item.multiple"
+                            />
+                            <span>{{ echo('post:admin:multiple') }}</span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="elgg-col-1of2">
+                <elgg-input-text
+                    v-model="item['#label']"
+                    :label="echo('post:admin:label')"
+                    :help="echo('post:admin:label:help')"
+                />
+            </div>
+
+            <div class="elgg-col-1of2">
+                <elgg-input-text
+                    v-model="item['#help']"
+                    :label="echo('post:admin:help')"
+                    :help="echo('post:admin:help:help')"
+                />
+            </div>
+
+            <div class="elgg-col-1of2">
+                <elgg-input-text
+                    v-model="item['placeholder']"
+                    :label="echo('post:admin:placeholder')"
+                    :help="echo('post:admin:placeholder:help')"
+                />
+            </div>
+
+            <div class="elgg-col-1of2">
+                <elgg-input-select
+                    v-model="item.width"
+                    :label="echo('post:admin:width')"
+                    :help="echo('post:admin:width:help')"
+                    :options="['6', '5', '4', '3', '2', '1']"
+                />
+            </div>
+
+            <component :is="extension" :item.sync="item"></component>
+
+            <div class="elgg-col-1of1" v-if="fieldType.config.has_options">
+                <h5>{{ echo('post:admin:field_options') }}</h5>
+
+                <div v-for="(option, index) in item.options" :key="index">
+                    <div class="elgg-columns has-padding">
+                        <div class="elgg-col-1of2">
+                            <elgg-input-text
+                                v-model="option.value"
+                                :placeholder="echo('post:admin:option_value')"
+                            />
+                        </div>
+
+                        <div class="elgg-col-1of2">
+                            <elgg-input-text
+                                v-model="option.label"
+                                :placeholder="echo('post:admin:option_label')"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="post-admin__menu elgg-foot">
+                    <a class="post-admin__add-item" @click="addOption">
+                        <i class="fas fa-plus"></i>
+                        <span>{{ echo('post:admin:add_option') }}</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="elgg-col-1of1">
+                <h5>{{ echo('post:admin:field_vars') }}</h5>
+                <div class="elgg-text-help">{{ echo('post:admin:field_vars:help') }}</div>
+
+                <div v-for="(option, index) in item.vars" :key="index">
+                    <div class="elgg-columns has-padding">
+                        <div class="elgg-col-1of2">
+                            <elgg-input-text
+                                v-model="option.name"
+                                :placeholder="echo('post:admin:var_name')"
+                            />
+                        </div>
+
+                        <div class="elgg-col-1of2">
+                            <elgg-input-text
+                                v-model="option.value"
+                                :placeholder="echo('post:admin:var_value')"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="post-admin__menu elgg-foot">
+                    <a class="post-admin__add-item" @click="addVar">
+                        <i class="fas fa-plus"></i>
+                        <span>{{ echo('post:admin:add_var') }}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

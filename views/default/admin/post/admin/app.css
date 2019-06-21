@@ -1,0 +1,43 @@
+.post-admin__item-head {
+	display: block;
+	margin: 0.5rem;
+	padding: 0.5rem 1rem;
+	border: 1px solid $(border-color-soft);
+	border-radius: 3px;
+	background: $(background-color-soft);
+	.elgg-field {
+		margin: 0;
+	}
+}
+
+.post-admin__item-body {
+	margin-left: 3rem;
+}
+
+.post-admin__item-form {
+	margin: 1rem -0.5rem 0;
+	padding: 0.5rem 1rem;
+	border: 1px solid $(border-color-soft);
+	background: #fff;
+	border-radius: 3px;
+}
+
+.post-admin__menu a {
+	margin-left: 0.5rem;
+	padding: 0.5rem;
+	display: inline-block;
+}
+
+.post-admin__footer {
+	padding: 1rem;
+	margin-top: 1rem;
+	border-top: 1px solid $(border-color-soft);
+}
+
+.post-admin .elgg-field {
+	margin: 0;
+}
+
+.cursor--draggable {
+	cursor: move;
+}
