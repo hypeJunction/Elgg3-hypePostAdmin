@@ -63,7 +63,7 @@ class SetFields {
 	 * Adapt field definition to a field declaration
 	 *
 	 * @param array $field
-	 * @param $entity
+	 * @param       $entity
 	 *
 	 * @return Field|null
 	 */
@@ -77,9 +77,16 @@ class SetFields {
 		foreach ($this->field_types as $definition) {
 			if ($definition['type'] === $type) {
 				$vars = $field['vars'];
-				unset($field_vars);
+				unset($field['vars']);
 
-				$params = array_merge($vars, $field);
+				$params = $field;
+
+				foreach ($vars as $var) {
+					$name = $var['name'];
+					$value = $var['value'];
+
+					$params[$name] = $value;
+				}
 
 				foreach (['#label', '#help', 'placeholder'] as $prop) {
 					if (!$params[$prop]) {
