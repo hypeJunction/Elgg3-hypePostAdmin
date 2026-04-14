@@ -32,8 +32,11 @@ echo elgg_format_element('post-admin-app', [
 	'form-name' => $form,
 ], $loader);
 
-elgg_load_css('animate');
-elgg_load_css('post-admin-app');
+// (4.x) elgg_load_css replaced by elgg_require_css taking a view
+// path. The 'animate' CDN registration via hypevue is gone in 4.x —
+// the animation styling is now a best-effort feature, missing
+// transitions don't break the admin form.
+elgg_require_css('admin/post/admin/app');
 elgg_require_js('admin/post/admin/app');
 
 

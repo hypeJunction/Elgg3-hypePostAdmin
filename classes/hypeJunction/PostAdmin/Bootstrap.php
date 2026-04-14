@@ -29,7 +29,9 @@ class Bootstrap extends PluginBootstrap {
 		elgg_register_plugin_hook_handler('field_types', 'post', ConfigureFieldTypes::class);
 		elgg_register_plugin_hook_handler('fields', 'all', SetFields::class);
 
-		elgg_register_css('post-admin-app', elgg_get_simplecache_url('admin/post/admin/app.css'));
+		// (4.x) elgg_register_css removed. The simplecache view
+		// admin/post/admin/app.css is loaded directly from the admin
+		// page template via elgg_require_css('admin/post/admin/app').
 	}
 
 	/**
