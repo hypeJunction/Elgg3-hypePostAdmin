@@ -4,7 +4,11 @@
 	"description": "Admin interface for managing post schema",
 	"homepage": "http://hypejunction.com",
 	"keywords": [
-		"elgg", "plugin", "post", "admin", "schema"
+		"elgg",
+		"plugin",
+		"post",
+		"admin",
+		"schema"
 	],
 	"license": "proprietary",
 	"authors": [
@@ -14,15 +18,24 @@
 		}
 	],
 	"extra": {
-		"installer-name": "hypePostAdmin"
+		"installer-name": "hypePostAdmin",
+		"elgg-plugin": {
+			"id": "hypepostadmin"
+		}
 	},
 	"require": {
-		"php": ">=7.0",
-		"composer/installers": "~1.0"
+		"php": ">=7.4",
+		"composer/installers": "^2.0",
+		"elgg/elgg": "^4.0"
 	},
 	"autoload": {
 		"psr-0": {
 			"": "classes/"
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"composer/installers": true
 		}
 	}
 }
