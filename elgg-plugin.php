@@ -1,6 +1,9 @@
 <?php
 
 return [
+	'plugin' => [
+		'version' => '4.0.0',
+	],
 	'bootstrap' => \hypeJunction\PostAdmin\Bootstrap::class,
 
 	'actions' => [
