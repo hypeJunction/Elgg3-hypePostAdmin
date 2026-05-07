@@ -6,6 +6,9 @@ use Elgg\Hook;
 use hypeJunction\Fields\Collection;
 use hypeJunction\Fields\Field;
 
+/**
+ * SetFields class.
+ */
 class SetFields {
 
 	protected $field_types;
@@ -62,8 +65,8 @@ class SetFields {
 	/**
 	 * Adapt field definition to a field declaration
 	 *
-	 * @param array $field
-	 * @param       $entity
+	 * @param array       $field  Field definition
+	 * @param \ElggEntity $entity Entity for which field is being adapted
 	 *
 	 * @return Field|null
 	 */
@@ -72,7 +75,7 @@ class SetFields {
 			$this->field_types = elgg_trigger_plugin_hook('field_types', 'post', [], []);
 		}
 
-		$type = $field['type'] ? : 'text';
+		$type = $field['type'] ?: 'text';
 
 		foreach ($this->field_types as $definition) {
 			if ($definition['type'] === $type) {

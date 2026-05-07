@@ -6,6 +6,9 @@ use Elgg\BadRequestException;
 use Elgg\Request;
 use Http\Client\Curl\ResponseBuilder;
 
+/**
+ * SavePostSchema class.
+ */
 class SavePostSchema {
 
 	/**

@@ -8,7 +8,7 @@ if (!$form) {
 
 echo elgg_format_element('h2', [], elgg_echo("item:$form"));
 
-$data = elgg_get_config("form:$form") ? : [
+$default_data = [
 	[
 		'name' => 'content',
 		'items' => [],
@@ -16,8 +16,10 @@ $data = elgg_get_config("form:$form") ? : [
 	[
 		'name' => 'sidebar',
 		'items' => [],
-	]
+	],
 ];
+
+$data = elgg_get_config("form:$form") ?: $default_data;
 
 $field_types = elgg_trigger_plugin_hook('field_types', 'post', [], []);
 
