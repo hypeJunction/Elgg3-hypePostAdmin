@@ -13,3 +13,4 @@ Gemfile.lock
 yarn.lock
 docker/.env
 tests/deps.local.txt
+tests/.phpunit.result.cache

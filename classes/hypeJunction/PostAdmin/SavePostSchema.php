@@ -2,9 +2,9 @@
 
 namespace hypeJunction\PostAdmin;
 
-use Elgg\BadRequestException;
+use Elgg\Exceptions\Http\BadRequestException;
+use Elgg\Http\ResponseBuilder;
 use Elgg\Request;
-use Http\Client\Curl\ResponseBuilder;
 
 /**
  * SavePostSchema class.

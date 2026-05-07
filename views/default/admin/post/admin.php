@@ -3,7 +3,7 @@
 $form = get_input('form');
 
 if (!$form) {
-	throw new \Elgg\BadRequestException();
+	throw new \Elgg\Exceptions\Http\BadRequestException();
 }
 
 echo elgg_format_element('h2', [], elgg_echo("item:$form"));
