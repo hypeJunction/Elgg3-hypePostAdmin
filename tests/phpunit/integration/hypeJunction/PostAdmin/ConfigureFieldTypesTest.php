@@ -2,6 +2,7 @@
 
 namespace hypeJunction\PostAdmin;
 
+use Elgg\Event;
 use Elgg\IntegrationTestCase;
 
 class ConfigureFieldTypesTest extends IntegrationTestCase {
@@ -14,19 +15,19 @@ class ConfigureFieldTypesTest extends IntegrationTestCase {
 
 	public function down(): void {}
 
-	private function makeHook($value = null): \Elgg\HooksRegistrationService\Hook {
-		$hook = $this->getMockBuilder(\Elgg\HooksRegistrationService\Hook::class)
+	private function makeEvent($value = null): Event {
+		$event = $this->getMockBuilder(Event::class)
 			->disableOriginalConstructor()
 			->getMock();
-		$hook->method('getValue')->willReturn($value);
+		$event->method('getValue')->willReturn($value);
 
-		return $hook;
+		return $event;
 	}
 
 	private function invoke(): array {
 		$handler = new ConfigureFieldTypes();
 
-		return $handler($this->makeHook());
+		return $handler($this->makeEvent());
 	}
 
 	private function findType(array $types, string $type): ?array {
@@ -83,7 +84,6 @@ class ConfigureFieldTypesTest extends IntegrationTestCase {
 	}
 
 	public function testOptionalPluginTypesAreOmittedWhenInactive(): void {
-		// Test environment has only core plugins active, so attachments/country/captcha should NOT appear.
 		$names = array_filter(array_column($this->invoke(), 'type'));
 		$this->assertNotContains('attachments', $names);
 		$this->assertNotContains('captcha', $names);
@@ -91,11 +91,11 @@ class ConfigureFieldTypesTest extends IntegrationTestCase {
 		$this->assertNotContains('address', $names);
 	}
 
-	public function testPreservesExistingFieldTypesFromHookValue(): void {
+	public function testPreservesExistingFieldTypesFromEventValue(): void {
 		$handler = new ConfigureFieldTypes();
 		$existing = [['type' => 'pre-existing', 'label' => 'Pre', 'config' => [], 'adapter' => fn() => null]];
 
-		$result = $handler($this->makeHook($existing));
+		$result = $handler($this->makeEvent($existing));
 		$this->assertSame('pre-existing', $result[0]['type']);
 		$this->assertGreaterThan(1, count($result));
 	}

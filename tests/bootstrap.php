@@ -1,6 +1,6 @@
 <?php
 
-$elggRoot = dirname(__DIR__, 3);
+$elggRoot = '/var/www/html';
 
 require_once $elggRoot . '/vendor/autoload.php';
 
@@ -12,4 +12,20 @@ spl_autoload_register(function ($class) use ($testClassesDir) {
 	}
 });
 
-\Elgg\Application::loadCore();
+$app = \Elgg\Application::getInstance();
+$app->bootCore();
+
+\Elgg\IntegrationTestCase::$_testing_app = $app;
+
+if (function_exists('_elgg_services')) {
+	_elgg_services()->plugins->generateEntities();
+	$plugin = elgg_get_plugin_from_id('hypepostadmin');
+	if ($plugin && !$plugin->isActive()) {
+		try {
+			$plugin->setPriority('last');
+			$plugin->activate();
+		} catch (\Throwable $e) {
+			echo 'WARNING: could not activate hypepostadmin: ' . $e->getMessage() . PHP_EOL;
+		}
+	}
+}

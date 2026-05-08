@@ -2,37 +2,25 @@
 
 namespace hypeJunction\PostAdmin;
 
-use Elgg\Hook;
+use Elgg\Event;
 use hypeJunction\Fields\Collection;
 use hypeJunction\Fields\Field;
 
-/**
- * SetFields class.
- */
 class SetFields {
 
 	protected $field_types;
 
-	/**
-	 * Setup group fields
-	 *
-	 * @param Hook $hook Hook
-	 *
-	 * @return array|null
-	 * @throws \InvalidParameterException
-	 */
-	public function __invoke(Hook $hook) {
+	public function __invoke(Event $event) {
 
-		$entity = $hook->getEntityParam();
+		$entity = $event->getEntityParam();
 
 		if (!$entity instanceof \ElggEntity) {
 			return null;
 		}
 
-		$fields = $hook->getValue();
-		/* @var $fields Collection */
+		$fields = $event->getValue();
 
-		$form = $hook->getType();
+		$form = $event->getType();
 		$sections = elgg_get_config("form:$form");
 
 		if (empty($sections)) {
@@ -62,17 +50,9 @@ class SetFields {
 		return $fields;
 	}
 
-	/**
-	 * Adapt field definition to a field declaration
-	 *
-	 * @param array       $field  Field definition
-	 * @param \ElggEntity $entity Entity for which field is being adapted
-	 *
-	 * @return Field|null
-	 */
 	public function adaptField($field, $entity) {
 		if (!$this->field_types) {
-			$this->field_types = elgg_trigger_plugin_hook('field_types', 'post', [], []);
+			$this->field_types = elgg_trigger_event_results('field_types', 'post', [], []);
 		}
 
 		$type = $field['type'] ?: 'text';
@@ -93,7 +73,6 @@ class SetFields {
 
 				foreach (['#label', '#help', 'placeholder'] as $prop) {
 					if (!$params[$prop]) {
-						// Let the API use translation keys
 						unset($params[$prop]);
 					}
 				}

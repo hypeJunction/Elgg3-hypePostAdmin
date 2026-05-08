@@ -2,23 +2,12 @@
 
 namespace hypeJunction\PostAdmin;
 
-use Elgg\HooksRegistrationService\Hook;
+use Elgg\Event;
 
-/**
- * PageMenu class.
- */
 class PageMenu {
 
-	/**
-	 * Add per-form post-admin entries to the admin page menu.
-	 *
-	 * @param Hook $hook "register", "menu:page"
-	 *
-	 * @return void
-	 */
-	public function __invoke(Hook $hook) {
-		$menu = $hook->getValue();
-		/* @var $menu \Elgg\Menu\MenuItems */
+	public function __invoke(Event $event) {
+		$menu = $event->getValue();
 
 		$menu->add(\ElggMenuItem::factory([
 			'name' => 'post_admin',
@@ -28,7 +17,7 @@ class PageMenu {
 			'context' => ['admin'],
 		]));
 
-		$handlers = $hook->elgg()->hooks->getAllHandlers();
+		$handlers = $event->elgg()->events->getAllHandlers();
 
 		$forms = array_keys($handlers['fields']);
 

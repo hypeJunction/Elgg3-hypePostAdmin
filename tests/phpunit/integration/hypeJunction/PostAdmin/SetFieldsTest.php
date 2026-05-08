@@ -2,6 +2,7 @@
 
 namespace hypeJunction\PostAdmin;
 
+use Elgg\Event;
 use Elgg\IntegrationTestCase;
 
 class SetFieldsTest extends IntegrationTestCase {
@@ -14,20 +15,20 @@ class SetFieldsTest extends IntegrationTestCase {
 
 	public function down(): void {}
 
-	private function makeHook($value, $entity, string $type = 'user'): \Elgg\HooksRegistrationService\Hook {
-		$hook = $this->getMockBuilder(\Elgg\HooksRegistrationService\Hook::class)
+	private function makeEvent($value, $entity, string $type = 'user'): Event {
+		$event = $this->getMockBuilder(Event::class)
 			->disableOriginalConstructor()
 			->getMock();
-		$hook->method('getValue')->willReturn($value);
-		$hook->method('getEntityParam')->willReturn($entity);
-		$hook->method('getType')->willReturn($type);
+		$event->method('getValue')->willReturn($value);
+		$event->method('getEntityParam')->willReturn($entity);
+		$event->method('getType')->willReturn($type);
 
-		return $hook;
+		return $event;
 	}
 
 	public function testReturnsNullWhenEntityIsNotElggEntity(): void {
 		$handler = new SetFields();
-		$result = $handler($this->makeHook([], null));
+		$result = $handler($this->makeEvent([], null));
 		$this->assertNull($result);
 	}
 
@@ -39,15 +40,13 @@ class SetFieldsTest extends IntegrationTestCase {
 			->disableAutoload()
 			->getMock();
 
-		$result = $handler($this->makeHook($fields, $user, 'unique_form_no_config_xyz'));
+		$result = $handler($this->makeEvent($fields, $user, 'unique_form_no_config_xyz'));
 		$this->assertNull($result);
 	}
 
 	public function testAdaptFieldReturnsNullForUnknownType(): void {
 		$handler = new SetFields();
 		$user = $this->createUser();
-		// adaptField triggers the field_types/post hook to populate $field_types,
-		// then returns null when no definition matches.
 		$result = $handler->adaptField(['type' => '__no_such_type__', 'name' => 'x', 'vars' => []], $user);
 		$this->assertNull($result);
 	}

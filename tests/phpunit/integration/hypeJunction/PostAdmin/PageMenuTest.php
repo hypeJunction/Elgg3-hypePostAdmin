@@ -2,6 +2,7 @@
 
 namespace hypeJunction\PostAdmin;
 
+use Elgg\Event;
 use Elgg\IntegrationTestCase;
 use Elgg\Menu\MenuItems;
 
@@ -11,38 +12,37 @@ class PageMenuTest extends IntegrationTestCase {
 		return 'hypepostadmin';
 	}
 
-	private $registeredFieldsHook;
+	private $registeredFieldsHandler;
 
 	public function up(): void {
-		// Need at least one entry under hooks['fields'] so the handler iterates.
-		$this->registeredFieldsHook = function () {
+		$this->registeredFieldsHandler = function () {
 			return null;
 		};
-		elgg_register_plugin_hook_handler('fields', 'object:test_form', $this->registeredFieldsHook);
+		elgg_register_event_handler('fields', 'object:test_form', $this->registeredFieldsHandler);
 	}
 
 	public function down(): void {
-		if ($this->registeredFieldsHook) {
-			elgg_unregister_plugin_hook_handler('fields', 'object:test_form', $this->registeredFieldsHook);
-			$this->registeredFieldsHook = null;
+		if ($this->registeredFieldsHandler) {
+			elgg_unregister_event_handler('fields', 'object:test_form', $this->registeredFieldsHandler);
+			$this->registeredFieldsHandler = null;
 		}
 	}
 
-	private function makeHook(MenuItems $items): \Elgg\HooksRegistrationService\Hook {
-		$hook = $this->getMockBuilder(\Elgg\HooksRegistrationService\Hook::class)
+	private function makeEvent(MenuItems $items): Event {
+		$event = $this->getMockBuilder(Event::class)
 			->disableOriginalConstructor()
 			->getMock();
-		$hook->method('getValue')->willReturn($items);
-		$hook->method('elgg')->willReturn(elgg());
+		$event->method('getValue')->willReturn($items);
+		$event->method('elgg')->willReturn(elgg());
 
-		return $hook;
+		return $event;
 	}
 
 	public function testAddsParentMenuItem(): void {
 		$handler = new PageMenu();
 		$items = new MenuItems();
 
-		$handler($this->makeHook($items));
+		$handler($this->makeEvent($items));
 
 		$found = false;
 		foreach ($items as $item) {
@@ -54,11 +54,11 @@ class PageMenuTest extends IntegrationTestCase {
 		$this->assertTrue($found, 'post_admin parent menu item not added');
 	}
 
-	public function testAddsChildMenuItemForEachRegisteredFieldsHook(): void {
+	public function testAddsChildMenuItemForEachRegisteredFieldsHandler(): void {
 		$handler = new PageMenu();
 		$items = new MenuItems();
 
-		$handler($this->makeHook($items));
+		$handler($this->makeEvent($items));
 
 		$childFound = false;
 		foreach ($items as $item) {
@@ -73,11 +73,10 @@ class PageMenuTest extends IntegrationTestCase {
 	}
 
 	public function testSkipsAllMetaForm(): void {
-		// SetFields registers fields/all — handler should skip the 'all' entry.
 		$handler = new PageMenu();
 		$items = new MenuItems();
 
-		$handler($this->makeHook($items));
+		$handler($this->makeEvent($items));
 
 		foreach ($items as $item) {
 			$this->assertNotSame('post_admin:all', $item->getName(), '"all" form should be skipped');

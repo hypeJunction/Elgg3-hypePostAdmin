@@ -2,7 +2,7 @@
 
 namespace hypeJunction\PostAdmin;
 
-use Elgg\HooksRegistrationService\Hook;
+use Elgg\Event;
 use hypeJunction\Attachments\AttachmentsField;
 use hypeJunction\Countries\AddressField;
 use hypeJunction\Fields\BooleanField;
@@ -11,20 +11,10 @@ use hypeJunction\Fields\MetaField;
 use hypeJunction\Fields\TagsField;
 use hypeJunction\Profile\ProfileField;
 
-/**
- * ConfigureFieldTypes class.
- */
 class ConfigureFieldTypes {
 
-	/**
-	 * Register post-admin field types.
-	 *
-	 * @param Hook $hook "fields", "post:admin"
-	 *
-	 * @return array
-	 */
-	public function __invoke(Hook $hook) {
-		$field_types = $hook->getValue() ?: [];
+	public function __invoke(Event $event) {
+		$field_types = $event->getValue() ?: [];
 
 		$field_types[] = [
 			'type' => 'text',
