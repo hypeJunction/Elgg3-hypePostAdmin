@@ -2,7 +2,7 @@
 
 return [
 	'plugin' => [
-		'version' => '5.0.0',
+		'version' => '6.0.0',
 	],
 	'bootstrap' => \hypeJunction\PostAdmin\Bootstrap::class,
 
@@ -11,6 +11,12 @@ return [
 			'controller' => \hypeJunction\PostAdmin\SavePostSchema::class,
 			'access' => 'admin',
 		]
+	],
+
+	'view_extensions' => [
+		'admin.css' => [
+			'admin/post/admin/app' => [],
+		],
 	],
 
 	'events' => [

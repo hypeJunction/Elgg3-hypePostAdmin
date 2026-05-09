@@ -21,7 +21,7 @@ $default_data = [
 
 $data = elgg_get_config("form:$form") ?: $default_data;
 
-$field_types = elgg_trigger_plugin_hook('field_types', 'post', [], []);
+$field_types = elgg_trigger_event('field_types', 'post', []);
 
 $loader = elgg_format_element('div', [
 	'class' => 'elgg-ajax-loader',
@@ -34,11 +34,6 @@ echo elgg_format_element('post-admin-app', [
 	'form-name' => $form,
 ], $loader);
 
-// (4.x) elgg_load_css replaced by elgg_require_css taking a view
-// path. The 'animate' CDN registration via hypevue is gone in 4.x —
-// the animation styling is now a best-effort feature, missing
-// transitions don't break the admin form.
-elgg_require_css('admin/post/admin/app');
 elgg_import_esm('admin/post/admin/app');
 
 
