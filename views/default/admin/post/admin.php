@@ -39,6 +39,6 @@ echo elgg_format_element('post-admin-app', [
 // the animation styling is now a best-effort feature, missing
 // transitions don't break the admin form.
 elgg_require_css('admin/post/admin/app');
-elgg_require_js('admin/post/admin/app');
+elgg_import_esm('admin/post/admin/app');
 
 
