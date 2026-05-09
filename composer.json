@@ -2,7 +2,7 @@
 	"name": "hypejunction/hypepostadmin",
 	"type": "elgg-plugin",
 	"description": "Admin interface for managing post schema",
-	"homepage": "http://hypejunction.com",
+	"homepage": "https://github.com/hypeJunction/hypepostadmin",
 	"keywords": [
 		"elgg",
 		"plugin",
@@ -13,8 +13,7 @@
 	"license": "proprietary",
 	"authors": [
 		{
-			"name": "Ismayil Khayredinov",
-			"email": "info@hypejunction.com"
+			"name": "hypeJunction"
 		}
 	],
 	"extra": {

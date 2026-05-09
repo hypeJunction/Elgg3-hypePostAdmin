@@ -1,6 +1,8 @@
 hypePostAdmin
 =============
 
+![Elgg 4.0](https://img.shields.io/badge/Elgg-4.0-orange.svg?style=flat-square)
+
 Interactive form builder for managing post schema 
 
 This plugin provides an admin interface to extend forms created with hypePost. Dependening on the plugins you have installed, it will provide a set of input fields to choose from, including:
@@ -24,7 +26,6 @@ This plugin provides an admin interface to extend forms created with hypePost. D
  - Country (hypeCountries)
  - Address (hypeCountries)
  
- 
  ## Registering new field type
  
  You can register custom field types. See hypePost to understand how field adapters work.
@@ -44,6 +45,4 @@ This plugin provides an admin interface to extend forms created with hypePost. D
     return $fields;
  });
  ```
- 
- 
  
