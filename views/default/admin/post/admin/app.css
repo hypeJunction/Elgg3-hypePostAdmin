@@ -1,9 +1,14 @@
+:root {
+	--postadmin-border-radius: 3px;
+	--postadmin-color-bg-form: #fff;
+}
+
 .post-admin__item-head {
 	display: block;
 	margin: 0.5rem;
 	padding: 0.5rem 1rem;
 	border: 1px solid var(--elgg-border-color-soft);
-	border-radius: 3px;
+	border-radius: var(--postadmin-border-radius);
 	background: var(--elgg-background-color-soft);
 	.elgg-field {
 		margin: 0;
@@ -18,8 +23,8 @@
 	margin: 1rem -0.5rem 0;
 	padding: 0.5rem 1rem;
 	border: 1px solid var(--elgg-border-color-soft);
-	background: #fff;
-	border-radius: 3px;
+	background: var(--postadmin-color-bg-form);
+	border-radius: var(--postadmin-border-radius);
 }
 
 .post-admin__menu a {
