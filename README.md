@@ -46,7 +46,6 @@ This plugin provides an admin interface to extend forms created with hypePost. D
  });
  ```
  
-
 ## Compatibility
 
 | Plugin version | Elgg version |
