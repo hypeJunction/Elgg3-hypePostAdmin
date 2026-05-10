@@ -2,7 +2,7 @@
     "name": "hypejunction/hypepostadmin",
     "type": "elgg-plugin",
     "description": "Admin interface for managing post schema",
-    "homepage": "https://github.com/hypeJunction/hypepostadmin",
+    "homepage": "https://github.com/hypeJunction/Elgg3-hypePostAdmin",
     "keywords": [
         "elgg",
         "plugin",
@@ -13,11 +13,12 @@
     "license": "GPL-2.0-or-later",
     "authors": [
         {
-            "name": "hypeJunction"
+            "name": "Ismayil Khayredinov",
+            "email": "ismayil.khayredinov@gmail.com"
         }
     ],
     "extra": {
-        "installer-name": "hypePostAdmin",
+        "installer-name": "hypepostadmin",
         "elgg-plugin": {
             "id": "hypepostadmin"
         }
@@ -37,5 +38,6 @@
         "allow-plugins": {
             "composer/installers": true
         }
-    }
+    },
+    "version": "1.0.4"
 }
