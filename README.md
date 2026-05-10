@@ -1,7 +1,7 @@
 hypePostAdmin
 =============
 
-![Elgg 4.0](https://img.shields.io/badge/Elgg-4.0-orange.svg?style=flat-square)
+![Elgg 7.x](https://img.shields.io/badge/Elgg-7.x-orange.svg?style=flat-square)
 
 Interactive form builder for managing post schema 
 
@@ -46,3 +46,9 @@ This plugin provides an admin interface to extend forms created with hypePost. D
  });
  ```
  
+
+## Compatibility
+
+| Plugin version | Elgg version |
+|---|---|
+| current | 7.x |
