@@ -13,7 +13,11 @@ use hypeJunction\Profile\ProfileField;
 
 class ConfigureFieldTypes {
 
-	public function __invoke(Hook $hook) {
+	/**
+     * @param Hook $hook
+     * @return mixed
+     */
+    public function __invoke(Hook $hook) {
 		$field_types = $hook->getValue() ? : [];
 
 		$field_types[] = [

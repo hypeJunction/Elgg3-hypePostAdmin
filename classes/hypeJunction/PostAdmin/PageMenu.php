@@ -5,7 +5,10 @@ namespace hypeJunction\PostAdmin;
 use Elgg\HooksRegistrationService\Hook;
 
 class PageMenu {
-	public function __invoke(Hook $hook) {
+	/**
+     * @param Hook $hook
+     */
+    public function __invoke(Hook $hook) {
 		$menu = $hook->getValue();
 		/* @var $menu \Elgg\Menu\MenuItems */
 

@@ -8,7 +8,8 @@ use hypeJunction\Fields\Field;
 
 class SetFields {
 
-	protected $field_types;
+	/** @var mixed */
+    protected $field_types;
 
 	/**
 	 * Setup group fields
