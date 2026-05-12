@@ -1,40 +1,40 @@
 {
-    "name": "hypejunction/hypepostadmin",
-    "type": "elgg-plugin",
-    "description": "Admin interface for managing post schema",
-    "homepage": "https://github.com/hypeJunction/hypepostadmin",
-    "keywords": [
-        "elgg",
-        "plugin",
-        "post",
-        "admin",
-        "schema"
-    ],
-    "license": "GPL-2.0-or-later",
-    "authors": [
-        {
-            "name": "hypeJunction"
-        }
-    ],
-    "extra": {
-        "installer-name": "hypePostAdmin",
-        "elgg-plugin": {
-            "id": "hypepostadmin"
-        }
-    },
-    "require": {
-        "php": ">=8.1",
-        "composer/installers": "^2.0",
-        "elgg/elgg": "~6.1.0"
-    },
-    "autoload": {
-        "psr-0": {
-            "": "classes/"
-        }
-    },
-    "config": {
-        "allow-plugins": {
-            "composer/installers": true
-        }
-    }
+	"name": "hypejunction/hypepostadmin",
+	"type": "elgg-plugin",
+	"description": "Admin interface for managing post schema",
+	"homepage": "https://github.com/hypeJunction/hypepostadmin",
+	"keywords": [
+		"elgg",
+		"plugin",
+		"post",
+		"admin",
+		"schema"
+	],
+	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "hypeJunction"
+		}
+	],
+	"extra": {
+		"installer-name": "hypePostAdmin",
+		"elgg-plugin": {
+			"id": "hypepostadmin"
+		}
+	},
+	"require": {
+		"composer/installers": "^2.0",
+		"php": ">=8.2",
+		"elgg/elgg": "~6.1.0"
+	},
+	"autoload": {
+		"psr-0": {
+			"": "classes/"
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"composer/installers": true
+		}
+	}
 }
