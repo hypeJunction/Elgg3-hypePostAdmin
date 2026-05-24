@@ -6,10 +6,20 @@ use Elgg\Event;
 use hypeJunction\Fields\Collection;
 use hypeJunction\Fields\Field;
 
+/**
+ * Applies admin-configured field schemas to a form's field collection.
+ */
 class SetFields {
 
 	protected $field_types;
 
+	/**
+	 * Populate the field collection with admin-configured fields.
+	 *
+	 * @param Event $event "fields", $form event
+	 *
+	 * @return Collection|null
+	 */
 	public function __invoke(Event $event) {
 
 		$entity = $event->getEntityParam();
@@ -50,6 +60,14 @@ class SetFields {
 		return $fields;
 	}
 
+	/**
+	 * Resolve a field definition into a Field instance via its registered adapter.
+	 *
+	 * @param array       $field  Field definition
+	 * @param \ElggEntity $entity Owner entity
+	 *
+	 * @return Field|null
+	 */
 	public function adaptField($field, $entity) {
 		if (!$this->field_types) {
 			$this->field_types = elgg_trigger_event_results('field_types', 'post', [], []);
