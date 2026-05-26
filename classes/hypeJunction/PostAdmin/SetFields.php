@@ -21,7 +21,7 @@ class SetFields {
 		$fields = $event->getValue();
 
 		$form = $event->getType();
-		$sections = elgg_get_config("form:$form");
+		$sections = \elgg_get_config("form:$form");
 
 		if (empty($sections)) {
 			return null;
@@ -52,7 +52,7 @@ class SetFields {
 
 	public function adaptField($field, $entity) {
 		if (!$this->field_types) {
-			$this->field_types = elgg_trigger_event_results('field_types', 'post', [], []);
+			$this->field_types = \elgg_trigger_event_results('field_types', 'post', [], []);
 		}
 
 		$type = $field['type'] ?: 'text';
