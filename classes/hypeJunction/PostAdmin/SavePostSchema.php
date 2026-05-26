@@ -28,10 +28,10 @@ class SavePostSchema {
 		}
 
 		$sections = json_decode($sections, true);
-		elgg_save_config("form:$name", $sections);
+		\elgg_save_config("form:$name", $sections);
 
-		$msg = elgg_echo('post:admin:save:success');
+		$msg = \elgg_echo('post:admin:save:success');
 
-		return elgg_ok_response('', $msg);
+		return \elgg_ok_response('', $msg);
 	}
 }

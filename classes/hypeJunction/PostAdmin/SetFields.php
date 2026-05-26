@@ -33,7 +33,7 @@ class SetFields {
 		/* @var $fields Collection */
 
 		$form = $hook->getType();
-		$sections = elgg_get_config("form:$form");
+		$sections = \elgg_get_config("form:$form");
 
 		if (empty($sections)) {
 			return null;
@@ -72,7 +72,7 @@ class SetFields {
 	 */
 	public function adaptField($field, $entity) {
 		if (!$this->field_types) {
-			$this->field_types = elgg_trigger_plugin_hook('field_types', 'post', [], []);
+			$this->field_types = \elgg_trigger_plugin_hook('field_types', 'post', [], []);
 		}
 
 		$type = $field['type'] ?: 'text';

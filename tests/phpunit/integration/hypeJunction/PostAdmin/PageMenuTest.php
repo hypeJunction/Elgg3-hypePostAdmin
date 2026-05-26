@@ -18,12 +18,12 @@ class PageMenuTest extends IntegrationTestCase {
 		$this->registeredFieldsHook = function () {
 			return null;
 		};
-		elgg_register_plugin_hook_handler('fields', 'object:test_form', $this->registeredFieldsHook);
+		\elgg_register_plugin_hook_handler('fields', 'object:test_form', $this->registeredFieldsHook);
 	}
 
 	public function down(): void {
 		if ($this->registeredFieldsHook) {
-			elgg_unregister_plugin_hook_handler('fields', 'object:test_form', $this->registeredFieldsHook);
+			\elgg_unregister_plugin_hook_handler('fields', 'object:test_form', $this->registeredFieldsHook);
 			$this->registeredFieldsHook = null;
 		}
 	}

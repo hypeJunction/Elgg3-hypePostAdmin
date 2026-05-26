@@ -28,10 +28,10 @@ class ConfigureFieldTypes {
 
 		$field_types[] = [
 			'type' => 'text',
-			'label' => elgg_echo('post:admin:type:text'),
+			'label' => \elgg_echo('post:admin:type:text'),
 			'config' => [],
 			'adapter' => function ($params, $entity) {
-				if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+				if (\elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
 					return new ProfileField($params);
 				}
 
@@ -41,10 +41,10 @@ class ConfigureFieldTypes {
 
 		$field_types[] = [
 			'type' => 'plaintext',
-			'label' => elgg_echo('post:admin:type:plaintext'),
+			'label' => \elgg_echo('post:admin:type:plaintext'),
 			'config' => [],
 			'adapter' => function ($params, $entity) {
-				if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+				if (\elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
 					return new ProfileField($params);
 				}
 
@@ -54,10 +54,10 @@ class ConfigureFieldTypes {
 
 		$field_types[] = [
 			'type' => 'longtext',
-			'label' => elgg_echo('post:admin:type:longtext'),
+			'label' => \elgg_echo('post:admin:type:longtext'),
 			'config' => [],
 			'adapter' => function ($params, $entity) {
-				if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+				if (\elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
 					return new ProfileField($params);
 				}
 
@@ -67,7 +67,7 @@ class ConfigureFieldTypes {
 
 		$field_types[] = [
 			'type' => 'select',
-			'label' => elgg_echo('post:admin:type:select'),
+			'label' => \elgg_echo('post:admin:type:select'),
 			'config' => [
 				'has_options' => true,
 				'accepts_multiple' => true,
@@ -84,7 +84,7 @@ class ConfigureFieldTypes {
 					$params['options_values'][$value] = $label;
 				}
 
-				if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+				if (\elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
 					return new ProfileField($params);
 				}
 
@@ -94,7 +94,7 @@ class ConfigureFieldTypes {
 
 		$field_types[] = [
 			'type' => 'checkboxes',
-			'label' => elgg_echo('post:admin:type:checkboxes'),
+			'label' => \elgg_echo('post:admin:type:checkboxes'),
 			'config' => [
 				'has_options' => true,
 				'accepts_multiple' => true,
@@ -114,7 +114,7 @@ class ConfigureFieldTypes {
 					$params['options'][$label] = $value;
 				}
 
-				if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+				if (\elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
 					return new ProfileField($params);
 				}
 
@@ -124,7 +124,7 @@ class ConfigureFieldTypes {
 
 		$field_types[] = [
 			'type' => 'boolean',
-			'label' => elgg_echo('post:admin:type:boolean'),
+			'label' => \elgg_echo('post:admin:type:boolean'),
 			'config' => [],
 			'adapter' => function ($params) {
 				$params['type'] = 'checkbox';
@@ -135,10 +135,10 @@ class ConfigureFieldTypes {
 
 		$field_types[] = [
 			'type' => 'number',
-			'label' => elgg_echo('post:admin:type:number'),
+			'label' => \elgg_echo('post:admin:type:number'),
 			'config' => [],
 			'adapter' => function ($params, $entity) {
-				if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+				if (\elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
 					return new ProfileField($params);
 				}
 
@@ -149,10 +149,10 @@ class ConfigureFieldTypes {
 		$field_types[] = [
 			'#type' => 'text',
 			'type' => 'email',
-			'label' => elgg_echo('post:admin:type:email'),
+			'label' => \elgg_echo('post:admin:type:email'),
 			'config' => [],
 			'adapter' => function ($params, $entity) {
-				if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+				if (\elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
 					return new ProfileField($params);
 				}
 
@@ -163,10 +163,10 @@ class ConfigureFieldTypes {
 		$field_types[] = [
 			'#type' => 'text',
 			'type' => 'url',
-			'label' => elgg_echo('post:admin:type:url'),
+			'label' => \elgg_echo('post:admin:type:url'),
 			'config' => [],
 			'adapter' => function ($params, $entity) {
-				if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+				if (\elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
 					return new ProfileField($params);
 				}
 
@@ -176,12 +176,12 @@ class ConfigureFieldTypes {
 
 		$field_types[] = [
 			'type' => 'date',
-			'label' => elgg_echo('post:admin:type:date'),
+			'label' => \elgg_echo('post:admin:type:date'),
 			'config' => [],
 			'adapter' => function ($params, $entity) {
 				$params['timestamp'] = true;
 
-				if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+				if (\elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
 					return new ProfileField($params);
 				}
 
@@ -191,10 +191,10 @@ class ConfigureFieldTypes {
 
 		$field_types[] = [
 			'type' => 'time',
-			'label' => elgg_echo('post:admin:type:time'),
+			'label' => \elgg_echo('post:admin:type:time'),
 			'config' => [],
 			'adapter' => function ($params, $entity) {
-				if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+				if (\elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
 					return new ProfileField($params);
 				}
 
@@ -204,10 +204,10 @@ class ConfigureFieldTypes {
 
 		$field_types[] = [
 			'type' => 'tags',
-			'label' => elgg_echo('post:admin:type:tags'),
+			'label' => \elgg_echo('post:admin:type:tags'),
 			'config' => [],
 			'adapter' => function ($params, $entity) {
-				if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+				if (\elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
 					return new ProfileField($params);
 				}
 
@@ -215,10 +215,10 @@ class ConfigureFieldTypes {
 			},
 		];
 
-		if (elgg_is_active_plugin('hypeAttachments')) {
+		if (\elgg_is_active_plugin('hypeAttachments')) {
 			$field_types[] = [
 				'type' => 'attachments',
-				'label' => elgg_echo('post:admin:type:attachments'),
+				'label' => \elgg_echo('post:admin:type:attachments'),
 				'config' => [
 					'accepts_multiple' => true,
 				],
@@ -228,18 +228,18 @@ class ConfigureFieldTypes {
 			];
 		}
 
-		if (elgg_is_active_plugin('hypeAutocomplete')) {
+		if (\elgg_is_active_plugin('hypeAutocomplete')) {
 			$field_types[] = [
 				'#type' => 'guids',
 				'options' => [
 					'type' => 'user',
 				],
-				'label' => elgg_echo('post:admin:type:users'),
+				'label' => \elgg_echo('post:admin:type:users'),
 				'config' => [
 					'accepts_multiple' => true,
 				],
 				'adapter' => function ($params, $entity) {
-					if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+					if (\elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
 						return new ProfileField($params);
 					}
 
@@ -248,18 +248,18 @@ class ConfigureFieldTypes {
 			];
 		}
 
-		if (elgg_is_active_plugin('hypeAutocomplete')) {
+		if (\elgg_is_active_plugin('hypeAutocomplete')) {
 			$field_types[] = [
 				'#type' => 'guids',
 				'options' => [
 					'type' => 'group',
 				],
-				'label' => elgg_echo('post:admin:type:groups'),
+				'label' => \elgg_echo('post:admin:type:groups'),
 				'config' => [
 					'accepts_multiple' => true,
 				],
 				'adapter' => function ($params, $entity) {
-					if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+					if (\elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
 						return new ProfileField($params);
 					}
 
@@ -268,14 +268,14 @@ class ConfigureFieldTypes {
 			];
 		}
 
-		if (elgg_is_active_plugin('hypeCaptcha')) {
+		if (\elgg_is_active_plugin('hypeCaptcha')) {
 			$field_types[] = [
 				'type' => 'captcha',
-				'label' => elgg_echo('post:admin:type:captcha'),
+				'label' => \elgg_echo('post:admin:type:captcha'),
 				'config' => [],
 				'adapter' => function ($params) {
 					$params['#html'] = function () use ($params) {
-						return elgg_view('input/captcha', $params);
+						return \elgg_view('input/captcha', $params);
 					};
 
 					return new CustomHtml($params);
@@ -283,13 +283,13 @@ class ConfigureFieldTypes {
 			];
 		}
 
-		if (elgg_is_active_plugin('hypeCountries')) {
+		if (\elgg_is_active_plugin('hypeCountries')) {
 			$field_types[] = [
 				'type' => 'country',
-				'label' => elgg_echo('post:admin:type:country'),
+				'label' => \elgg_echo('post:admin:type:country'),
 				'config' => [],
 				'adapter' => function ($params, $entity) {
-					if (elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
+					if (\elgg_is_active_plugin('hypeProfile') && $entity instanceof \ElggUser) {
 						return new ProfileField($params);
 					}
 
@@ -299,7 +299,7 @@ class ConfigureFieldTypes {
 
 			$field_types[] = [
 				'type' => 'address',
-				'label' => elgg_echo('post:admin:type:address'),
+				'label' => \elgg_echo('post:admin:type:address'),
 				'config' => [],
 				'adapter' => function ($params, $entity) {
 					return new AddressField($params);
