@@ -62,11 +62,11 @@ class SavePostSchemaTest extends IntegrationTestCase {
 		]));
 
 		$this->assertNotNull($response);
-		$saved = elgg_get_config("form:$formName");
+		$saved = \elgg_get_config("form:$formName");
 		$this->assertSame($sections, $saved);
 
 		// Cleanup
-		elgg_remove_config("form:$formName");
+		\elgg_remove_config("form:$formName");
 	}
 
 	public function testReturnsOkResponseWithSuccessMessage(): void {
@@ -81,6 +81,6 @@ class SavePostSchemaTest extends IntegrationTestCase {
 		// elgg_ok_response returns a ResponseBuilder-shaped instance
 		$this->assertNotNull($response);
 
-		elgg_remove_config("form:$formName");
+		\elgg_remove_config("form:$formName");
 	}
 }
