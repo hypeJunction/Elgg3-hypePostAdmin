@@ -4,8 +4,18 @@ namespace hypeJunction\PostAdmin;
 
 use Elgg\Event;
 
+/**
+ * Builds the admin page menu entries for post admin schemas.
+ */
 class PageMenu {
 
+	/**
+	 * Add menu items for each registered form schema.
+	 *
+	 * @param Event $event "register", "menu:page" event
+	 *
+	 * @return void
+	 */
 	public function __invoke(Event $event) {
 		$menu = $event->getValue();
 

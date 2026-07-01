@@ -11,8 +11,18 @@ use hypeJunction\Fields\MetaField;
 use hypeJunction\Fields\TagsField;
 use hypeJunction\Profile\ProfileField;
 
+/**
+ * Registers field type adapters for post admin schemas.
+ */
 class ConfigureFieldTypes {
 
+	/**
+	 * Append built-in field type adapters to the event value.
+	 *
+	 * @param Event $event "field_types", "post" event
+	 *
+	 * @return array
+	 */
 	public function __invoke(Event $event) {
 		$field_types = $event->getValue() ?: [];
 
